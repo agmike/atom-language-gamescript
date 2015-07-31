@@ -3,7 +3,12 @@
   "version": "0.0.1",
   "description": "GameScript language support in Atom",
   "keywords": ["language", "gamescript", "trainz", "trainzscript", "gs"],
-  "repository": "https://github.com/atom/atom-language-gamescript",
+  "repository": "https://github.com/agmike/atom-language-gamescript",
+  "bugs": "https://github.com/agmike/atom-language-gamescript/issues",
+  "author": "Mike Krasnenkov <mkrasnenkov@gmail.com> (https://agmike.github.io/)",
+  "contributors": [
+    "Alexander Goncharenko <alexandergn@gmail.com> (https://bitbucket.org/AlexanderGn/)"
+  ],
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
