@@ -1,52 +1,70 @@
 ".source.gamescript":
-  array:
+
+  'new array variable':
     prefix: "array"
     body: "${1:GSObject}[] ${2:Array} = new $1[$3];"
-  case:
+
+  'switch case clause':
     prefix: "case"
     body: "case ${1:0} : $2; break;"
-  cast:
-    prefix: "cast"
-    body: "${1:GSObject} $2 = cast<$1>$3;"
-  class:
+
+  'new variable from cast':
+    prefix: "cast-var"
+    body: "${1:GSObject} $2 = cast <$1> $3;"
+
+  'cast expression':
+    prefix: 'cast'
+    body: "cast <$1> $2"
+
+  'class':
     prefix: "class"
     body: '''
-      class $1 isclass $2
+      class $1 isclass ${2:GSObject}
       {
-      
+          $0
       };
     '''
-  const:
-    prefix: "co"
+
+  'interface':
+    prefix: "interface"
+    body: '''
+      class $1
+      {
+          $0
+      };
+    '''
+
+  'define constant':
+    prefix: "const"
     body: "define public ${1:int} ${2:CONSTANT} = ${3:0};"
-  for:
+
+  'for loop':
     prefix: "for"
     body: '''
       int ${1:i};
-      for ($1 = 0; $1 < $2; $1++)
-      {
+      for ($1 = 0; $1 < $2; ++$1) {
       	$0
       }
     '''
-  "if-else":
+
+  "if-else branches":
     prefix: "ife"
     body: '''
-      if ($1)
-      {
+      if ($1) {
       	$0
       } else {
-      	
       }
     '''
-  if:
+
+  'if branch':
     prefix: "if"
     body: '''
-      if ($1)
-      {
+      if ($1) {
       	$0
       }
     '''
-  iter:
+
+  'iterate with for loop':
     prefix: "iter"
     body: '''
       int ${1:i};
@@ -55,31 +73,31 @@
       	$0 $2[$1]
       }
     '''
-  switch:
-    prefix: "sw"
+
+  'switch statement':
+    prefix: "switch"
     body: '''
-      switch($1)
-      {
-      	$0
-      	default : 
-      		break;
+      switch($1) {
+          $0
+          default:
+              break;
       }
     '''
-  while:
+
+  'while loop':
     prefix: "while"
     body: '''
-      while ($1)
-      {
-      	$0
+      while ($1) {
+      	  $0
       }
     '''
-".source.name":
-  "public-method":
+
+  'public method with prototype':
     prefix: "ff"
     body: '''
-      public $1 $2($3);
-      
-      public $1 $2($3)
+      $1 public $2 $3($4);
+
+      $1 public $2 $3($4)
       {
       	$0
       }
