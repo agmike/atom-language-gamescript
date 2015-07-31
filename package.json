@@ -1,9 +1,8 @@
 {
-  "name": "atom-language-gamescript",
-  "version": "0.0.0",
-  "description": "A short description of your package",
-  "keywords": [
-  ],
+  "name": "language-gamescript",
+  "version": "0.1.0",
+  "description": "GameScript language support in Atom",
+  "keywords": ["language", "gamescript", "trainz", "trainzscript", "gs"],
   "repository": "https://github.com/atom/atom-language-gamescript",
   "license": "MIT",
   "engines": {

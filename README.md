@@ -1,3 +1,7 @@
-# atom-language-gamescript package
+# GameScript support in Atom
 
-A short description of your package.
+Add syntax highlighting and snippets to GameScript files in Atom.
+
+GameScript is a scripting language used in Trainz Simulator.
+
+![Syntax highlighting example]([Imgur](http://i.imgur.com/3QmS66W.png?1))
