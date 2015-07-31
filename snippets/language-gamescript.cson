@@ -1,12 +1,12 @@
 ".source.gamescript":
 
+  'new variable':
+    prefix: "var"
+    body: "${1:GSObject} ${2:obj} = new $1();"
+
   'new array variable':
     prefix: "array"
-    body: "${1:GSObject}[] ${2:Array} = new $1[$3];"
-
-  'switch case clause':
-    prefix: "case"
-    body: "case ${1:0} : $2; break;"
+    body: "${1:GSObject}[] ${2:array} = new $1[$3];"
 
   'new variable from cast':
     prefix: "cast-var"
@@ -19,19 +19,19 @@
   'class':
     prefix: "class"
     body: '''
-      class $1 isclass ${2:GSObject}
-      {
-          $0
-      };
+class $1 isclass ${2:GSObject}
+{
+    $0
+};
     '''
 
   'interface':
     prefix: "interface"
     body: '''
-      class $1
-      {
-          $0
-      };
+class $1
+{
+    $0
+};
     '''
 
   'define constant':
@@ -41,64 +41,84 @@
   'for loop':
     prefix: "for"
     body: '''
-      int ${1:i};
-      for ($1 = 0; $1 < $2; ++$1) {
-      	$0
-      }
+int ${1:i};
+for ($1 = 0; $1 < $2; ++$1) {
+    $0
+}
     '''
 
   "if-else branches":
     prefix: "ife"
     body: '''
-      if ($1) {
-      	$0
-      } else {
-      }
+if ($1) {
+    $0
+} else {
+}
     '''
 
   'if branch':
     prefix: "if"
     body: '''
-      if ($1) {
-      	$0
-      }
+if ($1) {
+    $0
+}
     '''
 
   'iterate with for loop':
     prefix: "iter"
     body: '''
-      int ${1:i};
-      for ($1 = 0; $1 < $2.size(); $1++)
-      {
-      	$0 $2[$1]
-      }
+int ${1:i};
+for ($1 = 0; $1 < $2.size(); ++$1) {
+    $0 $2[$1]
+}
     '''
 
   'switch statement':
     prefix: "switch"
     body: '''
-      switch($1) {
-          $0
-          default:
-              break;
-      }
+switch($1) {
+    $0
+    default:
+        break;
+}
     '''
+
+  'switch case clause':
+    prefix: "case"
+    body: "case ${1:0}: $0; break;"
 
   'while loop':
     prefix: "while"
     body: '''
-      while ($1) {
-      	  $0
-      }
+while ($1) {
+    $0
+}
     '''
 
   'public method with prototype':
     prefix: "ff"
     body: '''
-      $1 public $2 $3($4);
+public $1 $2($3);
 
-      $1 public $2 $3($4)
-      {
-      	$0
-      }
+public $1 $2($3)
+{
+    $0
+}
+    '''
+
+  'LTest Case':
+    prefix: "ltest"
+    body: '''
+class Test_$1_$2 isclass LTest
+{
+    void SetUp() {}
+
+    void Run()
+    {
+        $0
+        NotImplemented();
+    }
+
+    void TearDown() {}
+};
     '''
