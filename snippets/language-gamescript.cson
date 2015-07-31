@@ -1,4 +1,4 @@
-".source.gs":
+".source.gamescript":
   array:
     prefix: "array"
     body: "${1:GSObject}[] ${2:Array} = new $1[$3];"
