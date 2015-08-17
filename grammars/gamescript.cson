@@ -8,7 +8,7 @@ patterns: [
       "1": name: "keyword.other.include.gamescript"
       "2": name: "entity.name.file.include.gamescript"
     match: "^\\s*(include)\\s+\"([^ ;]*)\""
-    name: "meta.include.source.cs"
+    name: "meta.include.source.gamescript"
   }
   {
     include: "#code"
@@ -362,7 +362,7 @@ repository:
 
   "storage-modifiers":
     match: "\\b(static|final|game|public|define|thread|secured)\\b"
-    name: "storage.modifier.source.cs"
+    name: "storage.modifier.source.gamescript"
   strings:
     patterns: [
       {
