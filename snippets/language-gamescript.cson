@@ -47,13 +47,13 @@ for ($1 = 0; $1 < $2; ++$1) {
 }
     '''
 
-  "if-else branches":
-    prefix: "ife"
+  "else-if branche":
+    prefix: "elif"
     body: '''
-if ($1) {
+else if ($1) {
     $0
-} else {
 }
+else
     '''
 
   'if branch':
