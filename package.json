@@ -21,7 +21,8 @@
     "atom": ">=1.0.0 <2.0.0"
   },
   "dependencies": {
-    "xregexp": "~2.0.0"
+    "xregexp": "~2.0.0",
+    "filewalker": "0.1.2"
   },
   "providedServices": {
     "linter": {

@@ -4,7 +4,7 @@ Add syntax highlighting snippets, and lints via `trainzutil compile` to GameScri
 
 GameScript is a scripting language used in Trainz Simulator.
 
-![Example](http://i.imgur.com/ydkQAwx.png)
+![Example](http://i.imgur.com/IRoIg7w.png)
 
 ## Lint
 
