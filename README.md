@@ -8,7 +8,7 @@ GameScript is a scripting language used in Trainz Simulator.
 
 ## Lint
 
-[linter](https://atom.io/package/linter) is required for lint feature.
+[linter](https://atom.io/packages/linter) is required for lint feature.
 To enable you need to specify path to `TrainzUtil` and `scripts` folder of your
 Trainz installation.
 
