@@ -6,6 +6,16 @@ GameScript is a scripting language used in Trainz Simulator.
 
 ![Example](http://i.imgur.com/IRoIg7w.png)
 
+## Install
+
+Using apm:
+
+```
+apm install language-gamescript
+```
+
+Or search for gamescript in Atom `Settings -> Install Packages`.
+
 ## Lint
 
 [linter](https://atom.io/packages/linter) is required for lint feature.
