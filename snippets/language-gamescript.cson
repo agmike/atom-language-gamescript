@@ -122,3 +122,7 @@ class Test_$1_$2 isclass LTest
     void TearDown() {}
 };
     '''
+
+  'LLog logger':
+    prefix: "llog"
+    body: '''static class $1Logger isclass LLog { public string GetScope() { return "$2"; }};'''
