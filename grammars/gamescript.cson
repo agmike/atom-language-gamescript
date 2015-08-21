@@ -119,23 +119,6 @@ repository:
   comments:
     patterns: [
       {
-        captures:
-          "0":
-            name: "punctuation.definition.comment.gs"
-        match: "/\\*\\*/"
-        name: "comment.block.empty.gs"
-      }
-      {
-        include: "text.html.gsdoc"
-      }
-      {
-        include: "#comments-inline"
-      }
-    ]
-
-  "comments-inline":
-    patterns: [
-      {
         begin: "/\\*"
         captures:
           "0":
