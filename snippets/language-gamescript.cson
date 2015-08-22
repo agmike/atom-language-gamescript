@@ -125,4 +125,4 @@ class Test_$1_$2 isclass LTest
 
   'LLog logger':
     prefix: "llog"
-    body: '''static class $1Logger isclass LLog { public string GetScope() { return "$2"; }};'''
+    body: '''static class $1 isclass LLogger { string S() { return "${2:log.scope}"; }};'''

@@ -16,6 +16,10 @@ module.exports =
       description: 'Additional include directories'
       items:
         type: 'string'
+    outputPath:
+      type: 'string'
+      default: 'out'
+      description: 'Output path'
 
   activate: ->
     console.log 'Language-GameScript: package loaded,
@@ -31,6 +35,9 @@ module.exports =
 
     @subscriptions.add atom.config.observe 'language-gamescript.includePath', (includePath) =>
       @includePath = includePath
+
+    @subscriptions.add atom.config.observe 'language-gamescript.outputPath', (outputPath) =>
+      @outputPath = outputPath
 
   deactivate: ->
     @subscriptions.dispose()

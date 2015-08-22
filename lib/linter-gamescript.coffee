@@ -40,7 +40,7 @@ class LinterGameScript
 
             file = absPath
             curDir = path.dirname absPath
-            outDir = '-p' + path.join rootDirPath, 'out', 'gsl'
+            outDir = '-p' + path.join rootDirPath, (@config 'outputPath'), 'gsl'
             args = ['compile', file, outDir, scriptsPath].concat includePath
             options = {cwd: curDir}
 
@@ -63,7 +63,7 @@ class LinterGameScript
               @removeProcess lintProcess
               if @lintProcesses.length is 0
                 # console.log 'resolve'
-                resolve allMessages
+                resolve @filter(allMessages)
 
 
             # console.log 'start ' + args
@@ -82,22 +82,18 @@ class LinterGameScript
 
 
   couldNotReadFilePattern: XRegExp('^Could not read file \\(null\\) : (?<file>.+)\\.$', 'm')
-  errorPattern: XRegExp('^\n?(?<file>[^(]+)\\((?<line>\\d+)\\) : (?<text>[^,]+), line \\d+\\.?$', 'm')
+  errorPattern: XRegExp('^\n?(?<file>[^(]+)\\((?<line>\\d+)\\) : (?<text>.+?), line \\d+\\.?$', 'm')
   # FIXME determine why extra newline is added after ^
 
 
   parse: (results) ->
     messages = []
-    exists = (pred) ->
-      for item in messages
-          return true if pred(item)
-      false
 
     XRegExp.forEach results, @couldNotReadFilePattern, (match) ->
       msg =
         type: 'error'
         text: "could not read file `#{match.file}`"
-      messages.push msg unless exists (m) -> m.text is msg.text
+      messages.push msg
 
     XRegExp.forEach results, @errorPattern, (match) ->
       msg =
@@ -105,11 +101,27 @@ class LinterGameScript
         text: match.text
         filePath: match.file
         range: [[match.line - 1, 0], [match.line - 1, 100]]
-      messages.push msg unless exists (m) ->
-        m.text is msg.text &&
-        m.file is msg.file &&
-        m.range[0][0] is msg.range[0][0]
+      messages.push msg
+
     return messages
+
+  filter: (allMessages) ->
+    messages = []
+    getLine = (m) ->
+      if m.range
+        return m.range[0][0]
+      undefined
+    #toStr = (m) -> "message: '#{m.text}' at '#{m.file}':#{getLine(m)}"
+    for msg in allMessages
+      exists = false
+      for existing in messages
+        if existing.text == msg.text && existing.file == msg.file && getLine(existing) == getLine(msg)
+          exists = true
+          break
+      if !exists
+        messages.push msg
+    return messages
+
 
 
   config: (key) ->

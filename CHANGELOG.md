@@ -11,6 +11,11 @@
 
 ## 0.3.2 - Minor fixes
 - Add installation instructions to README
-- Remove unnesessary comment scope in grammar
+- Remove unnecessary comment scope in grammar
 - Add lse logger snippet
 - Fix source scope in settings
+
+## 0.4.0 - Add output directory setting
+- Fix parsing return type mismatch message
+- Fix logger snippet
+- Fix duplicate error messages
