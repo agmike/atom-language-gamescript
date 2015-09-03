@@ -20,6 +20,11 @@ module.exports =
       type: 'string'
       default: 'out'
       description: 'Output path'
+    jobsCount:
+      type: 'integer'
+      default: 1
+      minimum: 1
+      description: 'Number of concurrent jobs'
 
   activate: ->
     console.log 'Language-GameScript: package loaded,
@@ -38,6 +43,9 @@ module.exports =
 
     @subscriptions.add atom.config.observe 'language-gamescript.outputPath', (outputPath) =>
       @outputPath = outputPath
+
+    @subscriptions.add atom.config.observe 'language-gamescript.jobsCount', (jobsCount) =>
+      @jobsCount = jobsCount
 
   deactivate: ->
     @subscriptions.dispose()

@@ -20,7 +20,8 @@ class LinterGameScript
 
   lint: (textEditor) =>
     return new Promise (resolve, reject) =>
-      console.log 'lint start'
+      # console.log 'lint start'
+
       command = @config 'trainzUtilPath'
       if !command
         resolve []
@@ -31,9 +32,11 @@ class LinterGameScript
 
       allMessages = []
 
+      walkCount = 0;
       atom.project.getPaths().forEach (rootDirPath) =>
         # console.log 'project path: ' + rootDirPath
-        walker = filewalker(rootDirPath, { maxPending: 4, matchRegExp: /\.gs$/ })
+        walkCount += 1
+        walker = filewalker(rootDirPath, { maxPending: (@config 'jobsCount'), matchRegExp: /\.gs$/ })
           .on("file", (filePath, fileStats, absPath) =>
             walker.pause()
             # console.log 'file: ' + absPath
@@ -61,7 +64,7 @@ class LinterGameScript
                     message.filePath = path.join curDir, message.filePath
                 allMessages.push messages...
               @removeProcess lintProcess
-              if @lintProcesses.length is 0
+              if (walkCount is 0) && (@lintProcesses.length is 0)
                 # console.log 'resolve'
                 resolve @filter(allMessages)
 
@@ -78,6 +81,8 @@ class LinterGameScript
           ).on('error', (e) ->
             console.log '[language-gamescript] error: ' + e.message
           ).on('done', ->
+            walkCount -= 1
+            # console.log 'done'
           ).walk()
 
 
