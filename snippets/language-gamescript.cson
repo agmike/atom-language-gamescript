@@ -76,7 +76,7 @@ for ($1 = 0; $1 < $2.size(); ++$1) {
   'switch statement':
     prefix: "switch"
     body: '''
-switch($1) {
+switch ($1) {
     $0
     default:
         break;
@@ -105,24 +105,3 @@ public $1 $2($3)
     $0
 }
     '''
-
-  'LTest Case':
-    prefix: "ltest"
-    body: '''
-class Test_$1_$2 isclass LTest
-{
-    void SetUp() {}
-
-    void Run()
-    {
-        $0
-        NotImplemented();
-    }
-
-    void TearDown() {}
-};
-    '''
-
-  'LLog logger':
-    prefix: "llog"
-    body: '''static class $1 isclass LLogger { string S() { return "${2:log.scope}"; }};'''
